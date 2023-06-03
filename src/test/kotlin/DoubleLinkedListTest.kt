@@ -96,8 +96,19 @@ class DoubleLinkedListTest {
     }
 
     @Test
+    fun clone() {
+        val list = DoubleLinkedList<Any>()
+    }
+
+    @Test
     fun reverse() {
         val list = DoubleLinkedList<Any>()
+        list.appendList(arrayOf(1,2,3,4,5).toList())
+        list.reverse()
+
+        assertEquals(1, list.get(4))
+        assertEquals(5, list.get(0))
+        assertEquals(3, list.get(2))
     }
 
     @Test
@@ -107,11 +118,6 @@ class DoubleLinkedListTest {
 
     @Test
     fun findLast() {
-        val list = DoubleLinkedList<Any>()
-    }
-
-    @Test
-    fun clone() {
         val list = DoubleLinkedList<Any>()
     }
 
