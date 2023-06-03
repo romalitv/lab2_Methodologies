@@ -65,6 +65,10 @@ class DoubleLinkedListTest {
         list.delete(1)
 
         assertEquals(2,list.size)
+        assertEquals(1,list.tail?.previous?.value)
+        assertEquals(1,list.head?.value)
+        assertEquals(3,list.head?.next?.value)
+        assertEquals(3,list.tail?.value)
 
     }
 
