@@ -16,20 +16,22 @@ class DoubleLinkedList<T> {
             if (size != 0) {
                 throw IllegalArgumentException("Length dont equal 0 when tail is null")
             }
+
             head = newNode
             tail = newNode
             size++
             return
         }
-        tail = newNode
+
         tail!!.next = newNode
         newNode.previous = tail
+        tail = newNode
         size++
     }
 
-    fun appendList(list : List<T>){
-        for (node in list){
-            this.append(node);
+    fun appendList(list: List<T>) {
+        for (node in list) {
+            this.append(node)
         }
     }
 
@@ -83,7 +85,6 @@ class DoubleLinkedList<T> {
             size--
             return value
         }
-
         if (index == size - 1) {
             value = tail!!.value
             tail!!.previous!!.next = null
@@ -91,7 +92,6 @@ class DoubleLinkedList<T> {
             size--
             return value
         }
-
         if (index == 0) {
             value = head!!.value
             head!!.next!!.previous = null
@@ -115,17 +115,17 @@ class DoubleLinkedList<T> {
         if (size == 0) {
             return
         }
-        var pointer = head
+        var nowNode = head
         var i = 0
         while (i < size) {
-            if (pointer!!.value == value) {
+            if (nowNode!!.value == value) {
                 delete(i)
                 i--
             }
             if (i == size - 1) {
                 return
             }
-            pointer = pointer.next
+            nowNode = nowNode.next
             i++
         }
     }
@@ -133,14 +133,14 @@ class DoubleLinkedList<T> {
     fun get(index: Int): T {
         val value: T
 
-        if (size == 0) {
-            throw IllegalArgumentException("Get method trying take value from empty list")
+        if (index < 0) {
+            throw IllegalArgumentException("Get method receive a negative index")
         }
         if (index >= size) {
             throw IllegalArgumentException("Get method received index that more than size of list")
         }
-        if (index < 0) {
-            throw IllegalArgumentException("Get method receive a negative index")
+        if (size == 0) {
+            throw IllegalArgumentException("Get method trying take value from empty list")
         }
 
         var nowNode = head!!
@@ -152,22 +152,21 @@ class DoubleLinkedList<T> {
     }
 
     fun clone(): DoubleLinkedList<T> {
-        val copiedList = DoubleLinkedList<T>()
-
+        val copy = DoubleLinkedList<T>()
         if (size == 0) {
-            return copiedList
+            return copy
         }
 
         var nowNode = head!!
         for (i in 0 until size) {
-            copiedList.append(nowNode.value)
+            copy.append(nowNode.value)
             if (i == size - 1) {
-                return copiedList
+                return copy
             }
             nowNode = nowNode.next!!
         }
 
-        throw IllegalArgumentException("Clone method returned nothing")
+        throw IllegalArgumentException("DoubleLinkedList.clone is not returned clone")
     }
 
     fun reverse() {
@@ -182,16 +181,17 @@ class DoubleLinkedList<T> {
             return -1
         }
 
-        var nowNode = head!!
+        var nowNoded = head!!
         for (i in 0 until size) {
-            if (nowNode.value == value) {
+            if (nowNoded.value == value) {
                 return i
             }
             if (i == size - 1) {
                 return -1
             }
-            nowNode = nowNode.next!!
+            nowNoded = nowNoded.next!!
         }
+
         throw IllegalArgumentException("FindFirst method returned nothing")
     }
 
@@ -230,13 +230,13 @@ class DoubleLinkedList<T> {
             return
         }
 
-        var current = list.head!!
+        var nowNode = list.head!!
         for (i in 0 until list.size) {
-            append(current.value)
+            append(nowNode.value)
             if (i == list.size - 1) {
                 return
             }
-            current = current.next!!
+            nowNode = nowNode.next!!
         }
     }
 }
