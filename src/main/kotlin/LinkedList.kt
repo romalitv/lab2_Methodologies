@@ -32,4 +32,46 @@ class LinkedList<T>(value: T? = null) {
         array.add(index, newNode)
     }
 
+    fun delete(index: Int): T {
+        val value : T
+
+        if (index == 0){
+            value = array.removeAt(0).value
+            return value
+        }
+
+        if( index == array.size - 1){
+            value = array.removeLast().value
+            array.last().next = null
+            return value
+        }
+
+        value = array.removeAt(index).value
+        array.elementAt(index - 1).next = array.elementAt(index)
+        return value
+    }
+
+    fun deleteAll(value: T) {
+        if (array.isEmpty()) return
+        var i = 0
+        while ( i < array.size ){
+            if (array[i].value == value) {
+                delete(i)
+                i--
+            }
+            i++
+        }
+    }
+
+    fun get(index: Int): T {
+        return array[index].value
+    }
+
+    fun findFirst(value: T): Int {
+        return array.indexOfFirst { it.value == value }
+    }
+
+    fun findLast(value: T): Int {
+        return array.indexOfLast { it.value == value }
+    }
 }
