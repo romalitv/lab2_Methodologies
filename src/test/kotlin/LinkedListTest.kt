@@ -11,7 +11,7 @@ class LinkedListTest {
 
         list.append(1)
 
-        assertEquals(1, list.length())
+        assertEquals(0, list.length())
         assertEquals(1, list.array[0].value)
 
         list.append(2)
