@@ -124,20 +124,56 @@ class LinkedListTest {
     @Test
     fun clone() {
         val list = LinkedList<Any>()
+
+        list.appendList(arrayListOf(1,2,3,4,5))
+
+        val listClone = list.clone()
+
+        assertEquals(1,listClone.get(0))
+        assertEquals(5,listClone.get(4))
+        assertEquals(3,listClone.get(2))
+
+        val listCloneCloned = listClone.clone()
+
+        assertEquals(1,listCloneCloned.get(0))
+        assertEquals(5,listCloneCloned.get(4))
+        assertEquals(3,listCloneCloned.get(2))
     }
 
     @Test
     fun reverse() {
         val list = LinkedList<Any>()
+        list.appendList(arrayListOf(1,2,3,4,5))
+        list.reverse()
+
+        assertEquals(1, list.get(4))
+        assertEquals(5, list.get(0))
+        assertEquals(3, list.get(2))
     }
 
     @Test
     fun clear() {
         val list = LinkedList<Any>()
+
+        list.appendList(arrayListOf(1,2,3,4,5))
+
+        list.clear()
+
+        assertEquals(0, list.array.size)
     }
 
     @Test
     fun extend() {
         val list = LinkedList<Any>()
+        list.appendList(arrayListOf(1,2,3,4,5))
+        val list2 = LinkedList<Any>()
+        list2.appendList(arrayListOf(6,7,8,9))
+
+        list.extend(list2)
+        assertEquals(9, list.array.size)
+        assertEquals(6, list.get(5))
+        assertEquals(7, list.get(6))
+        assertEquals(8, list.get(7))
+        assertEquals(9, list.get(8))
     }
 }
