@@ -74,33 +74,54 @@ class DoubleLinkedListTest {
 
     @Test
     fun deleteAll() {
+        val list = DoubleLinkedList<Any>()
+
+        list.appendList(arrayOf(1,5,3,4,5).toList())
+
+        assertEquals(5, list.size)
+
+        list.deleteAll(5)
+
+        assertEquals(3, list.size)
     }
 
     @Test
     fun get() {
+        val list = DoubleLinkedList<Any>()
+        list.appendList(arrayOf(1,2,3,4,5).toList())
+
+        assertEquals(5, list.get(4))
+        assertEquals(3, list.get(2))
+        assertEquals(1, list.get(0))
     }
 
     @Test
     fun reverse() {
+        val list = DoubleLinkedList<Any>()
     }
 
     @Test
     fun findFirst() {
+        val list = DoubleLinkedList<Any>()
     }
 
     @Test
     fun findLast() {
+        val list = DoubleLinkedList<Any>()
     }
 
     @Test
-    fun testClone() {
+    fun clone() {
+        val list = DoubleLinkedList<Any>()
     }
 
     @Test
     fun clear() {
+        val list = DoubleLinkedList<Any>()
     }
 
     @Test
     fun extend() {
+        val list = DoubleLinkedList<Any>()
     }
 }
