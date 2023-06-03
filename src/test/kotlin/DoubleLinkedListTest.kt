@@ -70,6 +70,9 @@ class DoubleLinkedListTest {
         assertEquals(3,list.head?.next?.value)
         assertEquals(3,list.tail?.value)
 
+        assertThrows(IllegalArgumentException::class.java) { list.delete(5) }
+        assertThrows(IllegalArgumentException::class.java) { list.delete(-1) }
+
     }
 
     @Test
@@ -139,15 +142,39 @@ class DoubleLinkedListTest {
     @Test
     fun findLast() {
         val list = DoubleLinkedList<Any>()
+        list.appendList(arrayOf(1,2,2,2,3,4,2,4,1,5).toList())
+
+        assertEquals(8, list.findLast(1))
+        assertEquals(6, list.findLast(2))
+        assertEquals(7, list.findLast(4))
     }
 
     @Test
     fun clear() {
         val list = DoubleLinkedList<Any>()
+        list.appendList(arrayOf(1,2,3,4,5).toList())
+
+        list.clear()
+
+        assertEquals(0, list.size)
+        assertEquals(null, list.head?.value)
+        assertEquals(null, list.tail?.value)
+
     }
 
     @Test
     fun extend() {
         val list = DoubleLinkedList<Any>()
+        list.appendList(arrayOf(1,2,3,4,5).toList())
+        val list2 = DoubleLinkedList<Any>()
+        list2.appendList(arrayOf(6,7,8,9).toList())
+
+        list.extend(list2)
+        assertEquals(9, list.size)
+        assertEquals(6, list.get(5))
+        assertEquals(7, list.get(6))
+        assertEquals(8, list.get(7))
+        assertEquals(9, list.get(8))
+
     }
 }
