@@ -1,3 +1,4 @@
+import com.example.lab2.DoubleLinkedList
 import com.example.lab2.LinkedList
 import org.junit.jupiter.api.Test
 
@@ -11,7 +12,7 @@ class LinkedListTest {
 
         list.append(1)
 
-        assertEquals(0, list.length())
+        assertEquals(1, list.length())
         assertEquals(1, list.array[0].value)
 
         list.append(2)
@@ -69,16 +70,45 @@ class LinkedListTest {
     @Test
     fun delete() {
         val list = LinkedList<Any>()
+
+        list.append(1)
+        list.insert(2,1)
+        list.append(3)
+
+        assertEquals(3, list.array.size)
+
+        list.delete(1)
+
+        assertEquals(2,list.array.size)
+        assertEquals(1,list.array[0].value)
+        assertEquals(3,list.array[1].value)
+
+        assertThrows(IndexOutOfBoundsException::class.java) { list.delete(5) }
+        assertThrows(IndexOutOfBoundsException::class.java) { list.delete(-1) }
+
     }
 
     @Test
     fun deleteAll() {
         val list = LinkedList<Any>()
+
+        list.appendList(arrayListOf(1,2,2,3,4,5))
+
+        assertEquals(6, list.array.size)
+
+        list.deleteAll(2)
+
+        assertEquals(4, list.array.size)
     }
 
     @Test
     fun get() {
         val list = LinkedList<Any>()
+        list.appendList(arrayListOf(1,2,3,4,5))
+
+        assertEquals(5, list.get(4))
+        assertEquals(3, list.get(2))
+        assertEquals(1, list.get(0))
     }
 
     @Test
