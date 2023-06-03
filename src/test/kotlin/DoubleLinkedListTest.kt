@@ -98,6 +98,21 @@ class DoubleLinkedListTest {
     @Test
     fun clone() {
         val list = DoubleLinkedList<Any>()
+
+        list.appendList(arrayOf(1,2,3,4,5).toList())
+
+        val listClone = list.clone()
+
+        assertEquals(1,listClone.get(0))
+        assertEquals(5,listClone.get(4))
+        assertEquals(3,listClone.get(2))
+
+        val listCloneCloned = listClone.clone()
+
+        assertEquals(1,listCloneCloned.get(0))
+        assertEquals(5,listCloneCloned.get(4))
+        assertEquals(3,listCloneCloned.get(2))
+
     }
 
     @Test
