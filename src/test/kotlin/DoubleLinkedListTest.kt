@@ -114,6 +114,11 @@ class DoubleLinkedListTest {
     @Test
     fun findFirst() {
         val list = DoubleLinkedList<Any>()
+        list.appendList(arrayOf(1,2,3,3,3,4,2,5).toList())
+
+        assertEquals(2, list.findFirst(3))
+        assertEquals(1, list.findFirst(2))
+        assertEquals(5, list.findFirst(4))
     }
 
     @Test
