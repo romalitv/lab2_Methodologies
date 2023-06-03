@@ -114,11 +114,21 @@ class LinkedListTest {
     @Test
     fun findFirst() {
         val list = LinkedList<Any>()
+        list.appendList(arrayListOf(1,2,3,3,3,4,2,5))
+
+        assertEquals(2, list.findFirst(3))
+        assertEquals(1, list.findFirst(2))
+        assertEquals(5, list.findFirst(4))
     }
 
     @Test
     fun findLast() {
         val list = LinkedList<Any>()
+        list.appendList(arrayListOf(1,2,2,2,3,4,2,4,1,5))
+
+        assertEquals(8, list.findLast(1))
+        assertEquals(6, list.findLast(2))
+        assertEquals(7, list.findLast(4))
     }
 
     @Test
