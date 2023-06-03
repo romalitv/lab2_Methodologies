@@ -74,4 +74,24 @@ class LinkedList<T>(value: T? = null) {
     fun findLast(value: T): Int {
         return array.indexOfLast { it.value == value }
     }
+
+    fun clone(): LinkedList<T> {
+        val clone = LinkedList<T>()
+        clone.array.addAll(this.array)
+        return clone
+    }
+
+    fun reverse(){
+        array.reverse()
+    }
+
+    fun clear(){
+        array.clear()
+    }
+
+    fun extend(list: LinkedList<T>){
+        for ( node in list.array){
+            this.append(node.value)
+        }
+    }
 }
